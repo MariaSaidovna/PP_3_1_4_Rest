@@ -6,7 +6,6 @@ import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
-
 import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,9 +23,9 @@ public class MyClass {
 
     @PostConstruct
     private void startDB() {
-        User user = new User("user", "David", "Smith", 22, "user");
-        User admin = new User("admin", "Bob", "Black", 55, "admin");
-        User superAdmin = new User("superadmin", "Tom", "White", 33, "superadmin");
+        User user = new User("user", "David", "Smith", "dav@mail.ru", "user");
+        User admin = new User("admin", "Bob", "Black", "bob@mail.ru", "admin");
+        User superAdmin = new User("superadmin", "Tom", "White", "dtom@mail.ru", "superadmin");
         Role userRole = new Role("ROLE_USER");
         Role adminRole = new Role("ROLE_ADMIN");
         Set<Role> superAdminRole = new HashSet<Role>();
@@ -37,8 +36,8 @@ public class MyClass {
         user.setOneRole(userRole);
         admin.setOneRole(adminRole);
         superAdmin.setRoles(superAdminRole);
-        userService.add(user);
-        userService.add(admin);
-        userService.add(superAdmin);
+        userService.addUser(user);
+        userService.addUser(admin);
+        userService.addUser(superAdmin);
     }
 }

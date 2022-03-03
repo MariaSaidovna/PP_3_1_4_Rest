@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserService {
 
-    void add(User user);
+    void addUser(User user);
 
     public  void update(User user);
 
@@ -14,7 +14,7 @@ public interface UserService {
 
     User getUserById(long id);
 
-    void delete(long id);
+    void deleteById(long id);
 
     User getUserByUsername(String username);
 

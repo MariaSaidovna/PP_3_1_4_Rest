@@ -16,6 +16,7 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long id;
 
     @Column(unique = true, nullable = false)
@@ -26,10 +27,10 @@ public class User implements UserDetails {
     private String name;
 
     @Column
-    private String surname;
+    private String lastname;
 
     @Column
-    private int age;
+    private String email;
 
     @Column(nullable = false)
     @NotBlank
@@ -44,16 +45,16 @@ public class User implements UserDetails {
 
     public User() {}
 
-    public User(String username, String name, String surname, int age, String password) {
+    public User(String username, String name, String lastname, String email, String password) {
         this.username = username;
         this.name = name;
-        this.surname = surname;
-        this.age = age;
+        this.lastname = lastname;
+        this.email = email;
         this.password = password;
     }
 
-    public User(String username, String name, String surname, int age, String password, Set<Role> roles) {
-        this(username,name, surname, age, password);
+    public User(String username, String name, String lastname, String email, String password, Set<Role> roles) {
+        this(username, name, lastname, email, password);
         this.roles = roles;
     }
 
@@ -73,20 +74,20 @@ public class User implements UserDetails {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public int getAge() {
-        return age;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setAge(String email) {
+        this.email = email;
     }
 
     @Override

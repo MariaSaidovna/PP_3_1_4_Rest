@@ -86,7 +86,7 @@ public class User implements UserDetails {
         return email;
     }
 
-    public void setAge(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 

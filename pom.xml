@@ -13,8 +13,8 @@
 	<groupId>ru.kata</groupId>
 	<artifactId>spring-boot_security-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>3_1_3_Bootstrap</name>
-	<description>Demo project for Spring Boot</description>
+	<name>3_1_4_Rest</name>
+	<description>Kata3.1.4</description>
 
 	<properties>
 		<java.version>1.7</java.version>

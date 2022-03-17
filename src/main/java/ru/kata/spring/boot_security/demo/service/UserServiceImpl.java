@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void update (User user) {
         String passwordFromForm = user.getPassword();
-        String encodedPasswordFromBase = userRepository.getById(user.getId()).getPassword();
+        String encodedPasswordFromBase = userRepository.findUserById(user.getId()).getPassword();
         if(passwordFromForm.equals(encodedPasswordFromBase)) {
             user.setPassword(encodedPasswordFromBase);
         } else {
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(long id) {
-        return userRepository.getById(id);
+        return userRepository.findUserById(id);
     }
 
     @Override

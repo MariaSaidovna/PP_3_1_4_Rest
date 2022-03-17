@@ -9,18 +9,17 @@ import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-    private final UserService userService;
-    private final RoleService roleService;
 
-    public AdminController(UserService userService, RoleService roleService) {
-        this.userService = userService;
-        this.roleService = roleService;
-    }
+        @GetMapping
+        public String getUserList() {
+            return "AdA";
+        }
 
-    @GetMapping
+  /*  @GetMapping
     public String getUserList(@AuthenticationPrincipal UserDetails userDetails,
                               Model model) {
         String username = userDetails.getUsername();
@@ -32,42 +31,7 @@ public class AdminController {
         return "admin";
     }
 
-    @PostMapping(value="/add")
-    public String addUser(@ModelAttribute User newUser,
-                          @RequestParam(value = "checked", required = false) Long[] checked){
-        if (checked == null) {
-            newUser.setOneRole(roleService.getRoleByRole("USER"));
-        } else {
-            for (Long aLong : checked) {
-                if (aLong != null) {
-                    newUser.setOneRole(roleService.getRoleByID(aLong));
-                }
-            }
-        }
-        userService.addUser(newUser);
-        return "redirect:/admin";
-    }
+   */
 
-    @PatchMapping(value="/edit/{id}")
-    public String updateUser(@ModelAttribute User user,
-                             @RequestParam(value = "checked", required = false) Long[] checked) {
-        if (checked == null) {
-            user.setOneRole(roleService.getRoleByRole("USER"));
-            userService.update(user);
-        } else {
-            for (Long aLong : checked) {
-                if (aLong != null) {
-                    user.setOneRole(roleService.getRoleByID(aLong));
-                    userService.update(user);
-                }
-            }
-        }
-        return "redirect:/admin";
-    }
 
-    @DeleteMapping("/delete/{id}")
-    public String getUserId(@PathVariable(value="id") Long id) {
-        userService.deleteById(id);
-        return "redirect:/admin";
-    }
 }

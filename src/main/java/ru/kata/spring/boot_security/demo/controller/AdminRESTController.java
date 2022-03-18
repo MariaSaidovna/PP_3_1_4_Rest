@@ -29,7 +29,7 @@ public class AdminRESTController {
         return userService.getUserById(id);
     }
 
-    @PostMapping("/create")
+  /*  @PostMapping("/create")
     public User create(@RequestBody @Valid User user,
                                        @RequestParam(required = false, name = "newRoles") String[] newRoles) {
         for (String role : newRoles) {
@@ -37,15 +37,19 @@ public class AdminRESTController {
         }
         userService.addUser(user);
         return user;
+    }*/
+
+    @PostMapping("/create")
+    public User create(@RequestBody @Valid User user,
+                       @RequestParam(required = false, name = "newRoles") String[] newRoles) {
+        userService.addUser(user, newRoles);
+        return user;
     }
 
     @PatchMapping("/update")
     public User update(@RequestBody @Valid User user,
-                                       @RequestParam(required = false, name = "currentRoles") String[] currentRoles) {
-        for (String role : currentRoles) {
-            user.setOneRole(roleService.getRoleByRole(role));
-        }
-        userService.update(user);
+                       @RequestParam(required = false, name = "currentRoles") String[] currentRoles) {
+        userService.update(user, currentRoles);
         return user;
     }
 

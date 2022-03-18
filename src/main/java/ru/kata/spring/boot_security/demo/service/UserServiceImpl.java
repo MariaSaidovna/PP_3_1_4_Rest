@@ -14,10 +14,12 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final RoleService roleService;
 
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder){
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleService roleService){
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.roleService = roleService;
     }
 
     @Override
@@ -26,13 +28,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUser(User user) {
+    public void addUser(User user, String[] newRoles) {
+        for (String role : newRoles) {
+            user.setOneRole(roleService.getRoleByRole(role));
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
     @Override
-    public void update (User user) {
+    public void update (User user, String[] currentRoles) {
         String passwordFromForm = user.getPassword();
         String encodedPasswordFromBase = userRepository.findUserById(user.getId()).getPassword();
         if(passwordFromForm.equals(encodedPasswordFromBase)) {
@@ -43,6 +48,9 @@ public class UserServiceImpl implements UserService {
             } else {
                 user.setPassword(passwordEncoder.encode(passwordFromForm));
             }
+        }
+        for (String role : currentRoles) {
+            user.setOneRole(roleService.getRoleByRole(role));
         }
         userRepository.save(user);
     }

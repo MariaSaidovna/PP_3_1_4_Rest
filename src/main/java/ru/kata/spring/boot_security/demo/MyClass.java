@@ -28,16 +28,12 @@ public class MyClass {
         User superAdmin = new User("superadmin", "Tom", "White", "dtom@mail.ru", "superadmin");
         Role userRole = new Role("ROLE_USER");
         Role adminRole = new Role("ROLE_ADMIN");
-        Set<Role> superAdminRole = new HashSet<Role>();
-        superAdminRole.add(adminRole);
-        superAdminRole.add(userRole);
+
         roleService.addRole(userRole);
         roleService.addRole(adminRole);
-        user.setOneRole(userRole);
-        admin.setOneRole(adminRole);
-        superAdmin.setRoles(superAdminRole);
-        userService.addUser(user);
-        userService.addUser(admin);
-        userService.addUser(superAdmin);
+
+        userService.addUser(user, new String[]{"ROLE_USER"});
+        userService.addUser(admin, new String[]{"ROLE_ADMIN"});
+        userService.addUser(superAdmin, new String[]{"ROLE_ADMIN", "ROLE_USER"});
     }
 }

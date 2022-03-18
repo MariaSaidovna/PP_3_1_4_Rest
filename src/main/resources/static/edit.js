@@ -70,7 +70,7 @@ function getModalEdit(id) {
                 '                    <p>' +
                 '                        <strong><label>Role</label></strong>' +
                 '                        <select id="eRoles" name="roles" multiple size="2" ' +
-                '                               class="form-control" required>' +
+                '                               class="form-control" disabled >' +
                 '                            <option value="ROLE_ADMIN" >ADMIN</option>' +
                 '                            <option value="ROLE_USER"' + userSelect + ' selected>USER</option>' +
                 '                        </select>' +

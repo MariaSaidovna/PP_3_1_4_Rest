@@ -61,8 +61,6 @@ function getModalEdit(id) {
                 '                        <strong><label>Role</label></strong>' +
                 '                        <select id="eRoles" name="roles" multiple size="2" ' +
                 '                               class="form-control" disabled >' +
-                '                            <option value="ROLE_ADMIN" >ADMIN</option>' +
-                '                            <option value="ROLE_USER" >USER</option>' +
                 '                        </select>' +
                 '                    </p>' +
                 '                </form>' +

@@ -2,17 +2,7 @@ function getModalEdit(id) {
     fetch('http://localhost:8080/admin/users/' + id)
         .then(response => response.json())
         .then(user => {
-            let adminSelect = "";
-            let userSelect = "";
 
-            for (let i = 0; i < user.roles.length; i++) {
-                if (user.roles[i].roles === "ROLE_ADMIN") {
-                    adminSelect = "selected";
-                }
-                if (user.roles[i].roles === "ROLE_USER") {
-                    userSelect = "selected";
-                }
-            }
 
             let modal = document.getElementById('modalWindow');
             modal.innerHTML =
@@ -72,7 +62,7 @@ function getModalEdit(id) {
                 '                        <select id="eRoles" name="roles" multiple size="2" ' +
                 '                               class="form-control" disabled >' +
                 '                            <option value="ROLE_ADMIN" >ADMIN</option>' +
-                '                            <option value="ROLE_USER"' + userSelect + ' selected>USER</option>' +
+                '                            <option value="ROLE_USER" >USER</option>' +
                 '                        </select>' +
                 '                    </p>' +
                 '                </form>' +
@@ -88,6 +78,25 @@ function getModalEdit(id) {
                 '    </div>' +
                 '</div>';
             $("#modalEdit").modal();
+
+
+            $('#eRoles').empty();
+            let rolesList1 = ["ROLE_ADMIN", "ROLE_USER"];
+            console.log(rolesList1);
+
+            let userRoles = ''
+            user.roles.forEach(role => {
+                userRoles += role.role
+            })
+
+            rolesList1.forEach(function (value) {
+                if (userRoles.includes(value)) {
+                    $('#eRoles').append('<option id="option"' + value + ' value="' + value + '" selected>' + value + '</option>')
+                } else {
+                    $('#eRoles').append('<option id="option"' + value + ' value="' + value + '">' + value + '</option>')
+                }
+            });
+
         });
 }
 

@@ -29,16 +29,6 @@ public class AdminRESTController {
         return userService.getUserById(id);
     }
 
-  /*  @PostMapping("/create")
-    public User create(@RequestBody @Valid User user,
-                                       @RequestParam(required = false, name = "newRoles") String[] newRoles) {
-        for (String role : newRoles) {
-            user.setOneRole(roleService.getRoleByRole(role));
-        }
-        userService.addUser(user);
-        return user;
-    }*/
-
     @PostMapping("/create")
     public User create(@RequestBody @Valid User user,
                        @RequestParam(required = false, name = "newRoles") String[] newRoles) {
@@ -46,7 +36,9 @@ public class AdminRESTController {
         return user;
     }
 
-    @PatchMapping("/update")
+    @RequestMapping(value = "/update",
+            produces = "application/json",
+            method=RequestMethod.PUT)
     public User update(@RequestBody @Valid User user,
                        @RequestParam(required = false, name = "currentRoles") String[] currentRoles) {
         userService.update(user, currentRoles);

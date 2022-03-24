@@ -1,4 +1,4 @@
-function getModalEdit(id) {
+/*function getModalEdit(id) {
     fetch('http://localhost:8080/admin/users/' + id)
         .then(response => response.json())
         .then(user => {
@@ -124,7 +124,7 @@ function editUser() {
         headers: {"Content-type": "application/json; charset=UTF-8"}
     })
         .then(response => {
-            window.getAllUsers()
+           window.getAllUsers()
 
             $('#' + id).replaceWith('<tr id=' + id + '>' +
                 '<td>' + id + '</td>' +
@@ -139,4 +139,4 @@ function editUser() {
                 'class="btn btn-danger">Delete</button> </td>' +
                 '</tr>');
         });
-}
+}*/

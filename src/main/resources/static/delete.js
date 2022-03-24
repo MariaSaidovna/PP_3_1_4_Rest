@@ -1,4 +1,4 @@
-function getModalDelete(id) {
+/*function getModalDelete(id) {
     fetch('http://localhost:8080/admin/users/' + id)
         .then(response => response.json())
         .then(user => {
@@ -98,4 +98,4 @@ function deleteUser(id) {
     }).then(response => {
         $('#' + id).remove();
     });
-}
+}*/

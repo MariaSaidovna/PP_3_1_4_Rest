@@ -11,7 +11,7 @@ fetch(url)
                                 <td>${user.name}</td>
                                 <td>${user.lastname}</td>
                                 <td>${user.email}</td>
-                                <td>${user.roles.map(role => role.role === 'ROLE_USER' ? 'USER' : 'ADMIN')}</td>
+                                <td>${getRoleList(user).textContent.replaceAll("ROLE_", "")}</td>
                                 `;
     })
 
